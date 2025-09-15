@@ -73,7 +73,7 @@
 |`CLI`        | Clear Interrupt flag (IF = 0)   |
 
 
-### 3. PUSHF / POPF
+### 3. Stack Operations
 | Instruction |Description                        |
 |------------------|------------------------------|
 |`PUSHF`| Pushes the FLAGS register onto the stack|
