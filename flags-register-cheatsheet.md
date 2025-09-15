@@ -6,8 +6,7 @@
 
 
 ## FLAGS Register Layout
-
-<img width="1041" height="400" alt="FLAGS register" src="" />
+<img width="3368" height="2382" alt="FLAGS register" src="https://github.com/user-attachments/assets/40954fc4-29ad-43d7-8857-2b27a94238f5" />
 
 ## Main Flags
 
