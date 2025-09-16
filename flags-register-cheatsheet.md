@@ -1,6 +1,6 @@
 # Flags Register Cheatsheet
 
-### What Are Flags?
+### What are Flags?
 - **Flags** are special bits in the FLAGS register that indicate the status of the processor or the result of operations.
 - They are used for **conditional jumps**, **arithmetic**, and **logic** operations.
 
