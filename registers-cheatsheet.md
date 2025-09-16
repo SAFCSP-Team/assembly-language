@@ -1,5 +1,5 @@
 # Registers Cheatsheet
-### What are registers?
+### What are Registers?
 Registers are small, fast storage located inside the CPU, and used to perform operations and hold data.
 
 ## General-Purpose Registers (GPRs)
