@@ -2,7 +2,7 @@
 ### What is the Memory?
 Memory (or RAM) is a hardware component where data and programs are temporarily stored while a computer is running. It is **volatile**, meaning its contents are lost when the system powers off.
 
-Memory is a collection of bytes, each with a unique address, used to store code, data, and stack information.
+Memory is a collection of bytes, each with a **unique address**, used to store **data**.
 <img width="3368" height="2382" alt="address-value@4x" src="https://github.com/user-attachments/assets/abcb92f2-7fbd-4a88-b1d3-8395e94bf269" />
 
 ## Memory Layout
