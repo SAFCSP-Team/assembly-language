@@ -49,7 +49,8 @@ The **Flags Register** (**RFLAGS** in **64-bit mode**) contains **status** and *
 | **DF**      | Direction Flag  | 10      | Determines **string operation direction** (`0` = **increment**, `1` = **decrement**).   |
 | **IF**      | Interrupt Flag  | 9       | Enables (`1`) or disables (`0`) **maskable hardware interrupts**.                       |
 
-Most used flags: **CF**, **ZF**, **SF**, **OF**. 
+> [!NOTE]
+> Most used flags: **CF**, **ZF**, **SF**, **OF**. 
 
 
 
