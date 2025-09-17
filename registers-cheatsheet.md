@@ -1,9 +1,4 @@
 # Registers Cheatsheet
-### What are Registers?
-Registers are small, fast storage located inside the CPU, and used to perform operations and hold data.
-
-
-# Registers Cheatsheet
 
 ### What are Registers?
 **Registers** are **small**, **fast storage located** inside the **CPU**, and used to perform operations and hold data.
