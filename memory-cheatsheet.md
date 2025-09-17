@@ -6,7 +6,7 @@ Memory is a collection of bytes, each with a **unique address**, used to store *
 <img width="3368" height="2382" alt="address-value@4x" src="https://github.com/user-attachments/assets/abcb92f2-7fbd-4a88-b1d3-8395e94bf269" />
 
 ## Memory Layout
-<img width="3369" height="2382" alt="High-address@4x" src="https://github.com/user-attachments/assets/bcc65cc8-690a-45ed-927c-7a3f0d6b82e0" />
+<img width="3369" height="2382" alt="High-address@4x" src="https://github.com/user-attachments/assets/48a3ec71-78a3-4d7d-8187-def68275f343" />
 
 ## Segments
 |Segment|Purpose|Grows|Example|
