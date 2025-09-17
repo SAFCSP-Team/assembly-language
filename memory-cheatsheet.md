@@ -1,8 +1,12 @@
 # Memory Cheatsheet
 ### What is the Memory?
 Memory (or RAM) is a hardware component where data and programs are temporarily stored while a computer is running. It is **volatile**, meaning its contents are lost when the system powers off.
+
+Memory is a collection of bytes, each with a unique address, used to store code, data, and stack information.
+<img width="3368" height="2382" alt="address-value@4x" src="https://github.com/user-attachments/assets/abcb92f2-7fbd-4a88-b1d3-8395e94bf269" />
+
 ## Memory Layout
-<img width="3369" height="2382" alt="High-address@4x" src="https://github.com/user-attachments/assets/cab78e09-5ef3-45ef-8ac1-2404bbcd9142" />
+<img width="3369" height="2382" alt="High-address@4x" src="https://github.com/user-attachments/assets/1cb2167d-9f85-44bc-8361-73f139bea385" />
 
 ## Segments
 |Segment|Purpose|Grows|Example|
