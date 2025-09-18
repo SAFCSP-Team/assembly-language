@@ -27,6 +27,13 @@ These **registers** are used for **arithmetic**, **data movement**, and **logic 
 | **R14**      | R14        | R14D       | R14W       | R14B                         | -                          | An additional **general-purpose register**, offering more flexibility in **64-bit mode**. |
 | **R15**      | R15        | R15D       | R15W       | R15B                         | -                          | An additional **general-purpose register**, offering more flexibility in **64-bit mode**. |
 
+Example:
+```asm
+; Add two numbers 
+mov     rax, 10        ; RAX = 10
+mov     rbx, 32        ; RBX = 32
+add     rax, rbx       ; RAX = RAX + RBX (RAX = 42)
+```
 
 ## Special-Purpose Registers
 ### Instruction Pointer (IP) Registers
@@ -34,6 +41,14 @@ These **registers** are used for **arithmetic**, **data movement**, and **logic 
 |:------:|:------:|:------:|:-------:|
 | RIP    | EIP    | IP     | **Instruction Pointer** holds the **address** of the next **instruction** to be executed. |
 
+Example:
+```asm
+; Instruction pointer with a jump
+jmp     skip        ; The value of RIP points to 'mov rax, 2' after the jump
+mov     rax, 1      ; This instruction is skipped
+skip:
+mov     rax, 2      ; Execution continues here
+```
 
 ### Flags Register
 The **Flags Register** (**RFLAGS** in **64-bit mode**) contains **status** and **control flags** used by the **CPU**.
@@ -52,6 +67,14 @@ The **Flags Register** (**RFLAGS** in **64-bit mode**) contains **status** and *
 > [!NOTE]
 > Most used flags: **CF**, **ZF**, **SF**, **OF**. 
 
-
+Example:
+```asm
+mov     rax, 5
+sub     rax, 5      ; RAX = 0, Zero Flag (ZF) is set
+jz      label_zero  ; Jump if Zero Flag is set
+mov     rbx, 1      ; Skipped if RAX == 0
+label_zero:
+mov     rbx, 0      ; Execute if Zero Flag was set (RSX == 0)
+```
 
 
