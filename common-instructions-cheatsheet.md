@@ -10,6 +10,16 @@
 | **`XCHG`**   | `XCHG RAX, RBX`            | Swap values** between operands       |
 | **`LEA`**    | `LEA RBX, [RDI]`           | Load effective address             |
 
+Example:
+```asm
+section .text
+    mov rax, 1234h        ; Move immediate to RAX
+    mov rbx, rax          ; Copy RAX to RBX
+    push rax              ; Push RAX onto stack
+    pop rcx               ; Pop top of stack into RCX
+    xchg rax, rbx         ; Swap RAX and RBX
+```
+
 
 ## 2. Arithmetic Instructions
 | Mnemonic     | Example                    | Description                        |
@@ -27,6 +37,17 @@
 | **`DIV`**    | `DIV RBX`                  | Unsigned division                  |
 | **`IDIV`**   | `IDIV RCX`                 | Signed division                    |
 
+Example:
+```asm
+section .text
+    add rax, 10           ; rax = rax + 10
+    sub rbx, rcx          ; rbx = rbx - rcx
+    inc rcx               ; rcx = rcx + 1
+    dec rdx               ; rdx = rdx - 1
+    neg rax               ; rax = -rax
+    cmp rax, rbx          ; compare rax and rbx
+    imul rcx              ; rax = rax * rcx (signed)
+```
 
 ## 3. Logic Instructions
 | Mnemonic | Example          | Description                           |
@@ -39,6 +60,15 @@
 | **`SHL`**    | `SHL RAX, 1`    | Shift bits left, insert 0 on right |
 | **`SHR`**    | `SHR RAX, 1`    | Shift bits right, insert 0 on left |
 
+Example:
+```asm
+section .text
+    and rax, 0xFF          ; rax = rax AND 0xFF
+    or rax, rbx            ; rax = rax OR rbx
+    not rbx                ; flip all bits in rbx
+    shl rax, 2             ; rax = rax << 2 
+    shr rbx, 1             ; rbx = rbx >> 1 
+```
 
 ## 4. String Instructions
 
@@ -48,6 +78,21 @@
 | **`CMPS`**   | Compare source with destination (`CMPSB`= byte, `CMPSQ` = quadword)      |
 | **`LODS`**   | Load source to `RAX` (`LODSB` = byte, `LODSQ` = quadword)                |
 | **`STOS`**   | Store RAX at destination (`STOSB` = byte, `STOSQ` = quadword)           |
+
+Example:
+```asm
+section .data
+    src: dq 0x123456789ABCDEF0
+    dest:dq 0
+
+section .text
+    lea rsi, [rel src]           ; Source pointer
+    lea rdi, [rel dest]          ; Destination pointer
+    movsq                        ; Move quadword from [RSI] to [RDI]
+    cmpsq                        ; Compare quadword at [RSI] and [RDI]
+    lodsq                        ; Load quadword at [RSI] into RAX
+    stosq                        ; Store RAX at [RDI]
+```
 
 ## 5. Jumps (Unsigned)
 
@@ -65,6 +110,25 @@
 | **`JPE`**        | `PF = 1`                | **Parity flag** even                  |
 | **`JPO`**        | `PF = 0`                | **Parity flag** odd                   |
 
+Example:
+```asm
+section .text
+    mov rax, 5
+    mov rbx, 10
+    cmp rax, rbx
+    ja  greater_label    ; Jump if unsigned above (CF=0 and ZF=0)
+    jb  less_label       ; Jump if unsigned below (CF=1)
+    je  equal_label      ; Jump if equal (ZF=1)
+greater_label:
+    ; code for rax > rbx
+    jmp done
+less_label:
+    ; code for rax < rbx
+    jmp done
+equal_label:
+    ; code for rax == rbx
+done:
+```
 
 ## 6. Jumps (Signed)
 | Mnemonic      | Condition              | Description                           |
@@ -78,6 +142,26 @@
 | **`JO`**         | `OF = 1`               | **Overflow flag set**                 |
 | **`JNO`**        | `OF = 0`               | **Overflow flag clear**               |
 
+Example:
+```asm
+section .text
+    mov rax, -5
+    mov rbx, 10
+    cmp rax, rbx
+    jg  signed_greater    ; Jump if rax > rbx (signed)
+    jl  signed_less       ; Jump if rax < rbx (signed)
+    je  signed_equal      ; Jump if rax == rbx
+signed_greater:
+    ; code for rax > rbx (signed)
+    jmp signed_done
+signed_less:
+    ; code for rax < rbx (signed)
+    jmp signed_done
+signed_equal:
+    ; code for rax == rbx
+signed_done:
+```
+
 ## 7. Loop Instructions
 
 | Mnemonic           | Description                                  |
@@ -85,4 +169,17 @@
 | **`LOOP`**           | **Decrement RCX**, jump if `RCX ≠ 0`             |
 | **`LOOPE`** / **`LOOPZ`**  | Decrement `RCX`, jump if `RCX ≠ 0` and `ZF = 1`  |
 | **`LOOPNE`** / **`LOOPNZ`**| Decrement `RCX`, jump if `RCX ≠ 0` and `ZF = 0`  |
+
+Example:
+```asm
+
+section .text
+    mov     rcx, 5
+loop_start:
+    ; Loop body code here 
+    dec     rax
+    loop    loop_start     ; Decrement RCX, jump if not zero
+    ; RCX == 0 here
+```
+
 
