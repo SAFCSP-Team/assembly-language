@@ -62,7 +62,16 @@
 | `JP`/`JPE`       | Jump if **Parity Flag** is set (**PF = 1**)|
 | `JNP`/`JPO`      | Jump if **Parity Flag** is clear (**PF = 0**)|
 
-
+Example:
+```asm
+; Example: Jump if Zero
+mov     rax, 2
+sub     rax, 2    ; ZF is set (RAX = 0)
+jz      zero_flag ; Jumps because Zero Flag is set
+mov     rbx, 99   ; Not executed if jump occurs
+zero_flag:
+mov     rbx, 42   ; Executed if ZF was set
+```
 
 ### 2. Flag Manipulation Instructions
 
@@ -76,7 +85,14 @@
 |`STI`        | Set Interrupt flag **(IF = 1)**     |
 |`CLI`        | Clear Interrupt flag **(IF = 0)**   |
 
-
+Example:
+```asm
+; Example: Directly manipulating flags
+stc             ; Set Carry Flag (CF = 1)
+clc             ; Clear Carry Flag (CF = 0)
+std             ; Set Direction Flag (DF = 1)
+cld             ; Clear Direction Flag (DF = 0)
+```
 
 ### 3. Stack Operations
 | Instruction |Description                        |
@@ -84,7 +100,10 @@
 |`PUSHF`| Pushes the FLAGS register onto the stack|
 |`POPF` | Pops the FLAGS register from the stack  |
 
-
-
-
-
+Example:
+```asm
+; Example: Save and restore RFLAGS using stack
+pushfq          ; Push RFLAGS to stack
+; ... some instructions
+popfq           ; Restore RFLAGS from stack
+```
