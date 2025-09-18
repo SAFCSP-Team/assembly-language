@@ -1,11 +1,11 @@
 # Stack Frame Cheatsheet
 ### What is the Stack?
 The stack is a special section of a **program’s memory** used to **store temporary data**. It operates on a Last-In, First-Out (LIFO) principle. The stack is primarily used for:
-- Function calls and returns
-- Storing local variables
-- Saving register states
+- **Function calls and returns**
+- **Storing local variables**
+- **Saving register states**
   
-Each time a function is called, a **new section of the stack called a `stack frame` is created** to hold that **function’s data**. When the function finishes, its stack frame is destroyed, and the stack returns to its previous state.
+Each time a function is called, a **new section of the stack called a `stack frame` is created** to hold that **function’s data**. When the **function finishes**, its **stack frame is destroyed**, and the stack returns to its previous state.
 
 ### What is a Stack Frame?
 
