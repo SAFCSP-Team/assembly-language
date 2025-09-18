@@ -20,8 +20,6 @@
 | **Stack**    | Stores **local variables**, **function call/return info** | Downwards | Grows/shrinks on calls |
 
 
-
-
 ## Declaring Data in Assembly 
 ### x86-64 data types
 | Name        | Directive     | Size                | Example      |
@@ -55,7 +53,7 @@ MOV RAX, [RBX + RSI] ; source = RBX + RSI
 ```                                
 - **Base-Index with Displacement**: Combines a base register, index register, and offset.
 ```asm
-- MOV RAX, [RBX + RSI + 10h] ; source = RBX + RSI + 10
+MOV RAX, [RBX + RSI + 10h] ; source = RBX + RSI + 10
 ``` 
 
 
@@ -75,5 +73,36 @@ MOV RAX, [RBX + RSI] ; source = RBX + RSI
 | `CALL label`         | **Call function** (pushes return address)    | `CALL myfunc`                  |
 | `RET`                | **Return from function** (pops address from stack)| `RET`                     |
 
+Example:
+```asm
+section .data
+num         dq  42             ; QWORD (8 bytes) variable at label 'num'
+array       dq  10, 20, 30, 40 ; QWORD array (4 elements)
 
+section .text
+global _start
+
+_start:
+    ; Immediate Addressing
+    mov     rax, 123           ; RAX = 123
+
+    ; Register Addressing
+    mov     rbx, rax           ; RBX = RAX
+
+    ; Direct Addressing (label)
+    mov     rax, [num]         ; RAX = value at address 'num' (42)
+
+    ; Indirect Addressing
+    mov     rcx, num           ; RCX = address of 'num'
+    mov     rdx, [rcx]         ; RDX = value at address in RCX (42)
+
+    ; Indexed Addressing (array access)
+    mov     rsi, 2             ; index = 2
+    mov     rax, [array + rsi*8] ; RAX = array[2] (30), address of array + 2*8 (QWORD so offset = 8)
+
+    ; Base-Index + Displacement
+    mov     rbx, array         ; RBX = address of array
+    mov     rsi, 1             ; index = 1
+    mov     rax, [rbx + rsi*8 + 8] ; RAX = array[1 + 1] = array[2] (30)
+```
 
