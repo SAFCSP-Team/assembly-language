@@ -7,6 +7,10 @@ The stack is a special section of a **program’s memory** used to **store tempo
   
 Each time a function is called, a **new section of the stack called a `stack frame` is created** to hold that **function’s data**. When the **function finishes**, its **stack frame is destroyed**, and the stack returns to its previous state.
 
+
+>[!Note]
+>The stack grows **downward** to lower memory addresses.
+
 ### What is a Stack Frame?
 
 A **stack frame** is a section of the **stack** dedicated to a single **function call**. It contains:
@@ -14,8 +18,6 @@ A **stack frame** is a section of the **stack** dedicated to a single **function
 2. **Local variables**
 3. **Saved registers** (such as the **return address** and **base pointer**)
 
->[!Note]
->The stack grows **downward** (toward lower memory addresses). When a **function is called**, a new stack frame is created; when it returns, the frame is destroyed.
 
 ## Stack Frame Layout
 | Stack Component      | Description                                                                 |
