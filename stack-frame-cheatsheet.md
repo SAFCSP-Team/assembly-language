@@ -7,12 +7,11 @@ The stack is a special section of a **program’s memory** used to **store tempo
   
 Each time a function is called, a **new section of the stack called a `stack frame` is created** to hold that **function’s data**. When the **function finishes**, its **stack frame is destroyed**, and the stack returns to its previous state.
 
-
 >[!Note]
 >The stack grows **downward** to lower memory addresses.
 
-### What is a Stack Frame?
 
+## What is a Stack Frame?
 A **stack frame** is a section of the **stack** dedicated to a single **function call**. It contains:
 1. **Function parameters** (if not passed via registers)
 2. **Local variables**
@@ -20,13 +19,14 @@ A **stack frame** is a section of the **stack** dedicated to a single **function
 
 
 ## Stack Frame Layout
-| Stack Component      | Description                                                                 |
-|---------------------------|---------------------------------------------------------------------------------|
-| **Return Address**        | Address to return to after the function call                                   |
-| **Saved Base Pointer (RBP)** | Value of the caller function's base pointer                                 |
-| **Function Parameters**   | Passed arguments to the function (when not passed via registers)              |
-| **Local Variables**       | Space allocated for **variables** that exist **only within the function**              |
-| **Scratch Registers**     |  Registers that must be preserved (`RAX`, `RCX`, `RDX`, etc.)        |
+
+| Stack Component         | Description                                                      |
+|------------------------ |------------------------------------------------------------------|
+| **Return Address**      | Address to return to after the function call                     |
+| **Saved Base Pointer**  | Value of the caller function's base pointer (`EBP`)              |
+| **Function Parameters** | Arguments passed to the function (via stack)                     |
+| **Local Variables**     | Space allocated for **variables** that exist **only within the function** |
+| **Scratch Registers**   | Registers that must be preserved (`EAX`, `ECX`, `EDX`, etc.)     |
 
 
 ## Basic Stack Instructions
@@ -39,6 +39,7 @@ A **stack frame** is a section of the **stack** dedicated to a single **function
 | `LEA`           | **Load Effective Address** for pointer arithmetic             |
 | `CALL label`    | **Call function** (push return address, jump to label)           |
 | `RET`           | **Return from function** (pop return address, jump to it)        |
+
 
 
 ## Creating and Destroying a Stack Frame
