@@ -1,5 +1,5 @@
-# Assembly Language
-This repository is a comprehensive resource for learning and referencing **X86 Assembly Language**. It provides detailed explanations, organized cheat sheets, and examples covering essential topics, including **registers**, **flags**, **instructions**, **stack frames**, and **memory management**.
+# x86 Assembly Language
+This repository is a comprehensive resource for learning and referencing **x86 Assembly Language**. It provides detailed explanations, organized cheat sheets, and examples covering essential topics, including **registers**, **flags**, **instructions**, **stack frames**, and **memory management**.
 
 > Note: This repository is continuously updated with new examples, explanations, and resources.
 
