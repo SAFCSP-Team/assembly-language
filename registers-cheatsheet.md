@@ -1,6 +1,5 @@
 # Registers Cheatsheet
 
-### What are Registers?
 **Registers** are **small**, **fast storage located** inside the **CPU**, and used to perform operations and hold data.
 
 
@@ -51,7 +50,7 @@ mov     eax, 2      ; Execution continues here
 ```
 
 ### Flags Register
-The **Flags Register** (**EFLAGS** in 32-bit mode) contains **status** and **control flags** used by the **CPU**.
+The **EFLAGS Register** contains **status** and **control flags** used by the **CPU**.
 
 | Flag   | Label     | Bit | Purpose                                                                             |
 |:-------|:----------|:----|:------------------------------------------------------------------------------------|
