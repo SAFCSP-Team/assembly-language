@@ -1,5 +1,5 @@
 # Stack Frame Cheatsheet
-### What is the Stack?
+## What is the Stack?
 The stack is a special section of a **program’s memory** used to **store temporary data**. It operates on a Last-In, First-Out (LIFO) principle. The stack is primarily used for:
 - **Function calls and returns**
 - **Storing local variables**
@@ -28,71 +28,72 @@ A **stack frame** is a section of the **stack** dedicated to a single **function
 | **Local Variables**     | Space allocated for **variables** that exist **only within the function** |
 | **Scratch Registers**   | Registers that must be preserved (`EAX`, `ECX`, `EDX`, etc.)     |
 
-
 ## Basic Stack Instructions
 
-| Instruction | Purpose                                                 |
-|-----------------|--------------------------------------------------------------|
-| `PUSH reg`      | **Push value** of register onto the stack                        |
-| `POP reg`       | **Pop top of stack** into register                               |
-| `MOV`           | **Move data** between registers or memory                        |
-| `LEA`           | **Load Effective Address** for pointer arithmetic             |
-| `CALL label`    | **Call function** (push return address, jump to label)           |
-| `RET`           | **Return from function** (pop return address, jump to it)        |
-
-
+| Instruction | Purpose                                            |
+|-------------|---------------------------------------------------|
+| `PUSH reg`  | **Push value** of register onto the stack         |
+| `POP reg`   | **Pop top of stack** into register                |
+| `CALL`      | **Call function** (push return address, jump)     |
+| `RET`       | **Return from function** (pop return address, jump)|
 
 ## Creating and Destroying a Stack Frame
-To manage a stack frame in x86-64 assembly, the following steps are typically performed:
+
+To manage a stack frame in **32-bit x86 assembly**, the following steps are typically performed:
 
 ### Creating a Stack Frame
+
 ```asm
-push rbp            ; Save old base pointer
-mov rbp, rsp        ; Set new base pointer (frame pointer)
-sub rsp, 16         ; Allocate 16 bytes for local variables
+push ebp            ; Save old base pointer
+mov ebp, esp        ; Set new base pointer (frame pointer)
+sub esp, 16         ; Allocate 16 bytes for local variables
 ```
+
 ### Destroying a Stack Frame
+
 ```asm
-mov rsp, rbp        ; Deallocate local variable space
-pop rbp             ; Restore previous base pointer
+mov esp, ebp        ; Deallocate local variable space
+pop ebp             ; Restore previous base pointer
 ret                 ; Return to caller
 ```
 
-## Register Usage in x86-64
-1. **Parameter Passing**: 
-   - The first six arguments are passed via registers:
-     - `RDI`, `RSI`, `RDX`, `RCX`, `R8`, `R9`
-   - Additional arguments are passed on the stack.
-2. **Return Value**:
-   - The return value of a function is stored in `RAX`.
-  
+## Register Usage in 32-bit x86
+
+1. **Parameter Passing**:  
+   - All arguments are **pushed onto the stack** (right to left) before the call.
+   - The **caller** places arguments on the stack.
+2. **Return Value**:  
+   - The return value is stored in `EAX`.
+
 
 ## Example: Function with a Stack Frame
 
-This example demonstrates a function that **adds two integers** (passed in `RDI` and `RSI`) and returns the result in `RAX`.
+This example demonstrates a function that **adds two integers** (arguments passed on the stack) and returns the result in `EAX`.
 
 ```asm
 section .text
 global _start
 
 _start:
-    mov rdi, 5              ; First argument (5)
-    mov rsi, 3              ; Second argument (3)
+    push 3                  ; Second argument (rightmost)
+    push 5                  ; First argument
     call add_two_numbers    ; Call the function
-    ; Result (8) is now in RAX
+    add esp, 8              ; Clean up the stack (2 args x 4 bytes)
 
-    mov rax, 60             ; syscall number for exit
-    xor rdi, rdi            ; exit code 0
-    syscall                 ; invoke system call
+    ; Result (8) is now in EAX
+
+    mov eax, 1              ; syscall number for exit (Linux)
+    xor ebx, ebx            ; exit code 0
+    int 0x80                ; invoke system call
 
 add_two_numbers:
-    push rbp                ; Save old base pointer
-    mov rbp, rsp            ; Set new base pointer
+    push ebp                ; Save old base pointer
+    mov ebp, esp            ; Set new base pointer
 
-    mov rax, rdi            ; Copy first argument to RAX
-    add rax, rsi            ; Add second argument
+    mov eax, [ebp+8]        ; First argument (5)
+    add eax, [ebp+12]       ; Add second argument (3)
 
-    mov rsp, rbp            ; Restore stack pointer
-    pop rbp                 ; Restore base pointer
+    mov esp, ebp            ; Restore stack pointer
+    pop ebp                 ; Restore base pointer
     ret                     ; Return to caller
 ```
