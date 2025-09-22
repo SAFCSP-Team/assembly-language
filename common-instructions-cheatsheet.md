@@ -1,4 +1,4 @@
-# Common Instructions in X86 Assembly CheatSheet
+# Common Instructions in x86 Assembly CheatSheet
 
 ## 1. Transfer Instructions
 | Mnemonic | Example          | Description                              |
