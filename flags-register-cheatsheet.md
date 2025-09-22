@@ -8,7 +8,7 @@
 <img width="3368" height="2382" alt="FLAGS register" src="https://github.com/user-attachments/assets/40954fc4-29ad-43d7-8857-2b27a94238f5" />
 
 > [!IMPORTANT]
-> In **64-bit mode**, the **FLAGS register** is extended to `RFLAGS`, which includes additional reserved bits for future processor extensions. However, the functionality of the main flags remains the same.
+> In **32-bit mode**, the **FLAGS register** is extended to `EFLAGS`, which includes additional reserved bits for future processor extensions. However, the functionality of the main flags remains the same as in previous x86 modes.  
 
 
 ## Main Flags
@@ -16,10 +16,10 @@
 | Flag  | Name                | Bit | Description                                                    |
 |-------|---------------------|-----|----------------------------------------------------------------|
 | **CF**| Carry Flag       | 0       | Set if the **arithmetic operation** generates a **carry/borrow** out. |
-| **PF**| Parity Flag      | 2       | Set if the number of **1 bits** in the result is **even**.      |
+| **PF**| Parity Flag      | 2       | Set if the number of **1 bits** in the **result** is **even**.      |
 | **AF**| Auxiliary Carry  | 4       | Used in **BCD (binary-coded decimal)** operations.             |
-| **ZF**| Zero Flag        | 6       | Set if the result is **zero**.                                 |
-| **SF**| Sign Flag        | 7       | Set if the result is **negative** (**MSB set**).               |
+| **ZF**| Zero Flag        | 6       | Set if the **result** is **zero**.                                 |
+| **SF**| Sign Flag        | 7       | Set if the **result** is **negative** (**MSB set**).               |
 | **TF**| Trap Flag       | 8       | Used for **single-step debugging**.                            |
 | **IF**| Interrupt Flag | 9       | If set, **interrupts are enabled**.                            |
 | **DF**| Direction Flag   | 10      | Determines **string operation direction** (`0` = **increment**, `1` = **decrement**). |
@@ -27,6 +27,7 @@
 
 > [!NOTE]
 >  Bits **1**, **3**, **5**, and **12-15** are either **reserved** or **unused**.
+
 
 ## Common Instructions Affecting Flag
 
@@ -65,13 +66,14 @@
 Example:
 ```asm
 ; Example: Jump if Zero
-mov     rax, 2
-sub     rax, 2    ; ZF is set (RAX = 0)
+mov     eax, 2
+sub     eax, 2    ; ZF is set (EAX = 0)
 jz      zero_flag ; Jumps because Zero Flag is set
-mov     rbx, 99   ; Not executed if jump occurs
+mov     ebx, 99   ; Not executed if jump occurs
 zero_flag:
-mov     rbx, 42   ; Executed if ZF was set
+mov     ebx, 42   ; Executed if ZF was set
 ```
+
 
 ### 2. Flag Manipulation Instructions
 
@@ -93,17 +95,22 @@ clc             ; Clear Carry Flag (CF = 0)
 std             ; Set Direction Flag (DF = 1)
 cld             ; Clear Direction Flag (DF = 0)
 ```
+>[!TIP]
+> - **Set?** Use `ST*`(e.g.,`STC`, `STD`, `STI`)
+> - **Clear?** Use `CL*` (e.g.,`CLC`, `CLD`, `CLI`)
+> - **Complement?** Only `CMC` (for Carry flag)
+
 
 ### 3. Stack Operations
 | Instruction |Description                        |
 |------------------|------------------------------|
-|`PUSHF`| Pushes the FLAGS register onto the stack|
-|`POPF` | Pops the FLAGS register from the stack  |
+|`PUSHF`| Pushes the **flags register** onto the **stack**|
+|`POPF` | Pops the **flags register** from the **stack**  |
 
 Example:
 ```asm
-; Example: Save and restore RFLAGS using stack
-pushfq          ; Push RFLAGS to stack
+; Example: Save and restore EFLAGS using stack
+pushf           ; Push EFLAGS to stack
 ; ... some instructions
-popfq           ; Restore RFLAGS from stack
+popf            ; Restore EFLAGS from stack
 ```
