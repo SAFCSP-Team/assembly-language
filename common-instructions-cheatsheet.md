@@ -1,98 +1,100 @@
-
-# Common Instructions in 8086 Assembly CheatSheet
+# Common Instructions in X86 Assembly CheatSheet
 
 ## 1. Transfer Instructions
 | Mnemonic | Example          | Description                              |
 |--------------|----------------------------|----------------------------------------|
-| **`MOV`**    | `MOV RAX, RBX`             | Copy data between registers/memory |
-| **`PUSH`**   | `PUSH RAX`                 | Push value onto the stack|
-| **`POP`**    | `POP RBX`                  | Pop value from stack into register |
-| **`XCHG`**   | `XCHG RAX, RBX`            | Swap values** between operands       |
-| **`LEA`**    | `LEA RBX, [RDI]`           | Load effective address             |
+| **`MOV`**    | `MOV EAX, EBX`             | Copy data between registers/memory |
+| **`PUSH`**   | `PUSH EAX`                 | Push value onto the stack|
+| **`POP`**    | `POP EBX`                  | Pop value from stack into register |
+| **`XCHG`**   | `XCHG EAX, EBX`            | Swap values between operands       |
+| **`LEA`**    | `LEA EBX, [EDI]`           | Load effective address             |
 
 Example:
 ```asm
 section .text
-    mov rax, 1234h        ; Move immediate to RAX
-    mov rbx, rax          ; Copy RAX to RBX
-    push rax              ; Push RAX onto stack
-    pop rcx               ; Pop top of stack into RCX
-    xchg rax, rbx         ; Swap RAX and RBX
+    mov eax, 1234h        ; Move immediate to EAX
+    mov ebx, eax          ; Copy EAX to EBX
+    push eax              ; Push EAX onto stack
+    pop ecx               ; Pop top of stack into ECX
+    xchg eax, ebx         ; Swap EAX and EBX
 ```
 
 
 ## 2. Arithmetic Instructions
 | Mnemonic     | Example                    | Description                        |
 |--------------|----------------------------|------------------------------------|
-| **`ADD`**    | `ADD RAX, 1`               | Add source to destination          |
-| **`ADC`**    | `ADC RAX, RBX`             | Add source + carry flag to dest.   |
-| **`SUB`**    | `SUB RBX, RCX`             | Subtract source from destination   |
-| **`SBB`**    | `SBB RAX, 1`               | Subtract source + carry flag       |
-| **`INC`**    | `INC RCX`                  | Add 1 to operand                   |
-| **`DEC`**    | `DEC RDX`                  | Subtract 1 from operand            |
-| **`NEG`**    | `NEG RAX`                  | Two's complement (negate)          |
-| **`CMP`**    | `CMP RAX, RBX`             | Compare operands, sets flags only  |
-| **`MUL`**    | `MUL RCX`                  | Unsigned multiplication            |
-| **`IMUL`**   | `IMUL RCX`                 | Signed multiplication              |
-| **`DIV`**    | `DIV RBX`                  | Unsigned division                  |
-| **`IDIV`**   | `IDIV RCX`                 | Signed division                    |
+| **`ADD`**    | `ADD EAX, 1`               | Add source to destination          |
+| **`ADC`**    | `ADC EAX, EBX`             | Add source + carry flag to dest.   |
+| **`SUB`**    | `SUB EBX, ECX`             | Subtract source from destination   |
+| **`SBB`**    | `SBB EAX, 1`               | Subtract source + carry flag       |
+| **`INC`**    | `INC ECX`                  | Add 1 to operand                   |
+| **`DEC`**    | `DEC EDX`                  | Subtract 1 from operand            |
+| **`NEG`**    | `NEG EAX`                  | Two's complement **(negate)**      |
+| **`CMP`**    | `CMP EAX, EBX`             | Compare operands, sets flags only  |
+| **`MUL`**    | `MUL ECX`                  | Unsigned multiplication            |
+| **`IMUL`**   | `IMUL ECX`                 | Signed multiplication              |
+| **`DIV`**    | `DIV EBX`                  | Unsigned division                  |
+| **`IDIV`**   | `IDIV ECX`                 | Signed division                    |
 
 Example:
 ```asm
 section .text
-    add rax, 10           ; rax = rax + 10
-    sub rbx, rcx          ; rbx = rbx - rcx
-    inc rcx               ; rcx = rcx + 1
-    dec rdx               ; rdx = rdx - 1
-    neg rax               ; rax = -rax
-    cmp rax, rbx          ; compare rax and rbx
-    imul rcx              ; rax = rax * rcx (signed)
+    add eax, 10           ; eax = eax + 10
+    sub ebx, ecx          ; ebx = ebx - ecx
+    inc ecx               ; ecx = ecx + 1
+    dec edx               ; edx = edx - 1
+    neg eax               ; eax = -eax
+    cmp eax, ebx          ; compare eax and ebx
+    imul ecx              ; eax = eax * ecx (signed)
 ```
+
 
 ## 3. Logic Instructions
 | Mnemonic | Example          | Description                           |
 |----------|------------------|---------------------------------------|
-| **`AND`**    | `AND RAX, 0Fh`  | Bitwise AND operation              |
-| **`OR`**     | `OR RAX, RBX`   | Bitwise OR operation               |
-| **`XOR`**    | `XOR RAX, RBX`  | Bitwise XOR operation              |
-| **`NOT`**    | `NOT RBX`       | Flip all bits of operand           |
-| **`TEST`**   | `TEST RAX, 1`   | AND operation, updates flags only  |
-| **`SHL`**    | `SHL RAX, 1`    | Shift bits left, insert 0 on right |
-| **`SHR`**    | `SHR RAX, 1`    | Shift bits right, insert 0 on left |
+| **`AND`**    | `AND EAX, 0Fh`  | Bitwise AND operation              |
+| **`OR`**     | `OR EAX, EBX`   | Bitwise OR operation               |
+| **`XOR`**    | `XOR EAX, EBX`  | Bitwise XOR operation              |
+| **`NOT`**    | `NOT EBX`       | Flip all bits of operand           |
+| **`TEST`**   | `TEST EAX, 1`   | AND operation, updates flags only  |
+| **`SHL`**    | `SHL EAX, 1`    | Shift bits left, insert 0 on right |
+| **`SHR`**    | `SHR EAX, 1`    | Shift bits right, insert 0 on left |
 
 Example:
 ```asm
 section .text
-    and rax, 0xFF          ; rax = rax AND 0xFF
-    or rax, rbx            ; rax = rax OR rbx
-    not rbx                ; flip all bits in rbx
-    shl rax, 2             ; rax = rax << 2 
-    shr rbx, 1             ; rbx = rbx >> 1 
+    and eax, 0xFF          ; eax = eax AND 0xFF
+    or eax, ebx            ; eax = eax OR ebx
+    not ebx                ; flip all bits in ebx
+    shl eax, 2             ; eax = eax << 2 
+    shr ebx, 1             ; ebx = ebx >> 1 
 ```
+
 
 ## 4. String Instructions
 
 | Mnemonic    | Description                                               |
 |--------------|----------------------------------------------------------------|
-| **`MOVS`**   | Copy data from source to destination (`MOVSB` = byte, `MOVSQ` = quadword) |
-| **`CMPS`**   | Compare source with destination (`CMPSB`= byte, `CMPSQ` = quadword)      |
-| **`LODS`**   | Load source to `RAX` (`LODSB` = byte, `LODSQ` = quadword)                |
-| **`STOS`**   | Store RAX at destination (`STOSB` = byte, `STOSQ` = quadword)           |
+| **`MOVS`**   | Copy data from source to destination (`MOVSB` = byte, `MOVSD` = dword) |
+| **`CMPS`**   | Compare source with destination (`CMPSB`= byte, `CMPSD` = dword)      |
+| **`LODS`**   | Load source to `EAX` (`LODSB` = byte, `LODSD` = dword)                |
+| **`STOS`**   | Store EAX at destination (`STOSB` = byte, `STOSD` = dword)           |
 
 Example:
 ```asm
 section .data
-    src: dq 0x123456789ABCDEF0
-    dest:dq 0
+    src: dd 0x12345678
+    dest: dd 0
 
 section .text
-    lea rsi, [rel src]           ; Source pointer
-    lea rdi, [rel dest]          ; Destination pointer
-    movsq                        ; Move quadword from [RSI] to [RDI]
-    cmpsq                        ; Compare quadword at [RSI] and [RDI]
-    lodsq                        ; Load quadword at [RSI] into RAX
-    stosq                        ; Store RAX at [RDI]
+    lea esi, [src]           ; Source pointer
+    lea edi, [dest]          ; Destination pointer
+    movsd                    ; Move dword from [ESI] to [EDI]
+    cmpsd                    ; Compare dword at [ESI] and [EDI]
+    lodsd                    ; Load dword at [ESI] into EAX
+    stosd                    ; Store EAX at [EDI]
 ```
+
 
 ## 5. Jumps (Unsigned)
 
@@ -113,22 +115,23 @@ section .text
 Example:
 ```asm
 section .text
-    mov rax, 5
-    mov rbx, 10
-    cmp rax, rbx
+    mov eax, 5
+    mov ebx, 10
+    cmp eax, ebx
     ja  greater_label    ; Jump if unsigned above (CF=0 and ZF=0)
     jb  less_label       ; Jump if unsigned below (CF=1)
     je  equal_label      ; Jump if equal (ZF=1)
 greater_label:
-    ; code for rax > rbx
+    ; code for eax > ebx
     jmp done
 less_label:
-    ; code for rax < rbx
+    ; code for eax < ebx
     jmp done
 equal_label:
-    ; code for rax == rbx
+    ; code for eax == ebx
 done:
 ```
+
 
 ## 6. Jumps (Signed)
 | Mnemonic      | Condition              | Description                           |
@@ -145,41 +148,39 @@ done:
 Example:
 ```asm
 section .text
-    mov rax, -5
-    mov rbx, 10
-    cmp rax, rbx
-    jg  signed_greater    ; Jump if rax > rbx (signed)
-    jl  signed_less       ; Jump if rax < rbx (signed)
-    je  signed_equal      ; Jump if rax == rbx
+    mov eax, -5
+    mov ebx, 10
+    cmp eax, ebx
+    jg  signed_greater    ; Jump if eax > ebx (signed)
+    jl  signed_less       ; Jump if eax < ebx (signed)
+    je  signed_equal      ; Jump if eax == ebx
 signed_greater:
-    ; code for rax > rbx (signed)
+    ; code for eax > ebx (signed)
     jmp signed_done
 signed_less:
-    ; code for rax < rbx (signed)
+    ; code for eax < ebx (signed)
     jmp signed_done
 signed_equal:
-    ; code for rax == rbx
+    ; code for eax == ebx
 signed_done:
 ```
+
 
 ## 7. Loop Instructions
 
 | Mnemonic           | Description                                  |
 |--------------------|----------------------------------------------|
-| **`LOOP`**           | **Decrement RCX**, jump if `RCX ≠ 0`             |
-| **`LOOPE`** / **`LOOPZ`**  | Decrement `RCX`, jump if `RCX ≠ 0` and `ZF = 1`  |
-| **`LOOPNE`** / **`LOOPNZ`**| Decrement `RCX`, jump if `RCX ≠ 0` and `ZF = 0`  |
+| **`LOOP`**           | **Decrement ECX**, jump if `ECX ≠ 0`             |
+| **`LOOPE`** / **`LOOPZ`**  | Decrement `ECX`, jump if `ECX ≠ 0` and `ZF = 1`  |
+| **`LOOPNE`** / **`LOOPNZ`**| Decrement `ECX`, jump if `ECX ≠ 0` and `ZF = 0`  |
 
 Example:
 ```asm
-
 section .text
-    mov     rcx, 5
+    mov     ecx, 5
 loop_start:
     ; Loop body code here 
-    dec     rax
-    loop    loop_start     ; Decrement RCX, jump if not zero
-    ; RCX == 0 here
+    dec     eax
+    loop    loop_start     ; Decrement ECX, jump if not zero
+    ; ECX == 0 here
 ```
-
-
