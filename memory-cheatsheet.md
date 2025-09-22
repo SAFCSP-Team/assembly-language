@@ -12,7 +12,7 @@
 
 ## Segments
 | Segment      | Purpose                                        | Grows        | Example              |
-|:-----------: |:---------------------------------------------- |:------------:|:--------------------:|
+|:-----------: |:----------------------------------------------: |:------------:|:-------------------:|
 | **.text**    | Stores **program instructions (code)**         | Fixed        | `section .text`      |
 | **.rodata**  | **Read-only data** (constants, literals)       | Fixed        | `section .rodata`    |
 | **.data**    | Stores **initialized global/static variables** | Fixed        | `section .data`      |
