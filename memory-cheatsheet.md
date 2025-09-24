@@ -31,32 +31,34 @@
 | **BYTE**    | `db`          | 1 byte (**8 bits**) | `mybyte db 1`       |
 | **WORD**    | `dw`          | 2 bytes (**16 bits**)| `myword dw 2`       |
 | **DWORD**   | `dd`          | 4 bytes (**32 bits**)| `mydword dd 3`      |
+| **QWORD**   | `dq`          | 8 bytes (**64 bits**)| `myqword dq 4`      |
+
 
 
 ## Addressing Memory
 - **Immediate Addressing**: Data is part of the instruction.
 ```asm
-MOV EAX, 10 ; Move immediate value 10 to EAX
+mov eax, 10 ; Move immediate value 10 to EAX
 ```
 - **Register Addressing**: Data is in a register.
 ```asm
-MOV EAX, EBX ; Move data from EBX to EAX
+mov eax, ebx ; Move data from EBX to EAX
 ```                              
 - **Direct Addressing**: Access memory at a specific address.  
 ```asm
-MOV EAX, [1234h] ; Move value at memory address 1234 into EAX
+mov eax, [1234h] ; Move value at memory address 1234 into EAX
 ```
 - **Indirect Addressing**: The address is stored in a register.
 ```asm
-MOV EAX, [EBX] ; Move value at memory address in EBX to EAX
+mov eax, [ebx] ; Move value at memory address in EBX to EAX
 ```            
 - **Indexed Addressing**: Combines a base register and an index register.
 ```asm
-MOV EAX, [EBX + ESI] ; source = EBX + ESI
+mov eax, [ebx + esi] ; source = EBX + ESI
 ```                                                           
 - **Base-Index with Displacement**: Combines a base register, index register, and offset.
 ```asm
-MOV EAX, [EBX + ESI + 10h] ; source = EBX + ESI + 10
+mov eax, [ebx + esi + 10h] ; source = EBX + ESI + 10
 ``` 
 
 ## Common Instructions
