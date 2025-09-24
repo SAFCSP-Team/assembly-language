@@ -1,14 +1,12 @@
 # Flags Register Cheatsheet
 
 ### What are Flags?
-- **Flags** are **special bits** in the **FLAGS register** that indicate the **status of the processor** or the **result of operations**.
+- **Flags** are **special bits** in the **EFLAGS register**  that indicate the **status of the processor** or the **result of operations**.
 - They are used for **conditional jumps**, **arithmetic**, and **logic** operations.
 
 ## FLAGS Register Layout
 <img width="3368" height="2382" alt="FLAGS register" src="https://github.com/user-attachments/assets/40954fc4-29ad-43d7-8857-2b27a94238f5" />
-
-> [!IMPORTANT]
-> In **32-bit mode**, the **FLAGS register** is extended to `EFLAGS`, which includes additional reserved bits for future processor extensions. However, the functionality of the main flags remains the same as in previous x86 modes.  
+ 
 
 
 ## Main Flags
@@ -86,6 +84,9 @@ mov     ebx, 42   ; Executed if ZF was set
 |`CLD`        | Clear Direction flag **(DF = 0)**   |
 |`STI`        | Set Interrupt flag **(IF = 1)**     |
 |`CLI`        | Clear Interrupt flag **(IF = 0)**   |
+
+> [!IMPORTANT]
+> Not all flags in the EFLAGS register can be directly manipulated by CPU instructions. Many important flags, such as **ZF**, **SF**, and **OF**, are **set or cleared only as a result** of arithmetic or logical operations.
 
 Example:
 ```asm
