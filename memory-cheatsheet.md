@@ -9,6 +9,8 @@
 ## Process's Memory Layout
 <img width="3369" height="2382" alt="High-address@4x" src="https://github.com/user-attachments/assets/e2725b85-40d8-4a66-8fb2-6e10fb7c6498" />
 
+> [!NOTE]
+> This diagram explains the process layout on a Linux system. The layouts differ depending on the operating system.
 
 ## Segments
 | Segment      | Purpose                                        | Grows        | Example              |
