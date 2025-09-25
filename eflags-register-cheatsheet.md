@@ -5,8 +5,8 @@
 - They are used for **conditional jumps**, **arithmetic**, and **logic** operations.
 
 ## EFLAGS Register Layout
-<img width="3368" height="2382" alt="FLAGS register" src="https://github.com/user-attachments/assets/40954fc4-29ad-43d7-8857-2b27a94238f5" />
- 
+<img width="4745" height="2481" alt="EFlag" src="https://github.com/user-attachments/assets/17c6fefd-096f-4151-85f9-e1d4cc8de1ad" />
+
 
 ## Main Flags
 
