@@ -2,7 +2,7 @@
 This repository is a comprehensive resource for learning and referencing **x86 Assembly Language**. It provides detailed explanations, organized cheat sheets, and examples covering essential topics, including **registers**, **flags**, **instructions**, **stack frames**, and **memory management**.
 
 
-> This repository is a reference for assembly language and has no connection to any bootcamp. <br> It is continuously updated with new examples, explanations, and resources.
+> This repository is a reference for assembly language and has no connection to any specific course or bootcamp. It can be used for any educational purpose. <br> It is continuously updated with new examples, explanations, and resources.
 
 
 ## Table of Contents
