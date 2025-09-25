@@ -1,9 +1,12 @@
 # x86 Assembly Language
 This repository is a comprehensive resource for learning and referencing **x86 Assembly Language**. It provides detailed explanations, organized cheat sheets, and examples covering essential topics, including **registers**, **flags**, **instructions**, **stack frames**, and **memory management**.
 
-> Note: This repository is continuously updated with new examples, explanations, and resources.
+
+> This repository is a reference for assembly language and has no connection to any bootcamp. <br> It is continuously updated with new examples, explanations, and resources.
+
 
 ## Table of Contents
+- [Assembler](https://github.com/SAFCSP-Team/assembly-language/blob/main/assembler.md)
 - [Registers Cheatsheet](https://github.com/SAFCSP-Team/assembly-language/blob/main/registers-cheatsheet.md)
 - [Flags Register Cheatsheet](https://github.com/SAFCSP-Team/assembly-language/blob/main/flags-register-cheatsheet.md)
 - [Common Instructions Cheatsheet](https://github.com/SAFCSP-Team/assembly-language/blob/main/common-instructions-cheatsheet.md)
